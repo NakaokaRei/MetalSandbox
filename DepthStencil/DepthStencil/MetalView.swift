@@ -106,9 +106,9 @@ class MetalView: MTKView {
         //   v1: (-0.3, -0.2, 0.0)
         //   v2: (-0.1, -0.2, 0.0)
         let verticesA: [SIMD3<Float>] = [
-            SIMD3<Float>(-0.2,  0.2, 0.0),
-            SIMD3<Float>(-0.3, -0.2, 0.0),
-            SIMD3<Float>(-0.1, -0.2, 0.0)
+            SIMD3<Float>(0.0,  0.2, 0.0),
+            SIMD3<Float>(-0.2, -0.2, 0.0),
+            SIMD3<Float>(0.2, -0.2, 0.0)
         ]
         vertexBufferA = device.makeBuffer(bytes: verticesA,
                                           length: verticesA.count * MemoryLayout<SIMD3<Float>>.size,
@@ -120,9 +120,9 @@ class MetalView: MTKView {
         //   v1: (-0.5, -0.46, 0.5)
         //   v2: ( 0.1, -0.46, 0.5)
         let verticesB: [SIMD3<Float>] = [
-            SIMD3<Float>(-0.2,  0.74, 0.5),
-            SIMD3<Float>(-0.5, -0.46, 0.5),
-            SIMD3<Float>( 0.1, -0.46, 0.5)
+            SIMD3<Float>(-0.0,  0.5, 0.5),
+            SIMD3<Float>(-0.5, -0.5, 0.5),
+            SIMD3<Float>(0.5, -0.5, 0.5)
         ]
         vertexBufferB = device.makeBuffer(bytes: verticesB,
                                           length: verticesB.count * MemoryLayout<SIMD3<Float>>.size,
@@ -154,7 +154,7 @@ class MetalView: MTKView {
         encoder.setRenderPipelineState(pipelineStateB)
         encoder.setVertexBuffer(vertexBufferB, offset: 0, index: 0)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
-        
+
         
         encoder.endEncoding()
         commandBuffer.present(drawable)
